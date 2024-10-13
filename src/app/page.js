@@ -70,9 +70,9 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white">
-      <header className="p-6 flex items-center justify-between">
-        <div className="text-2xl font-bold">Wealth wisely</div>
-        <div className="flex items-center gap-6">
+      <header className="p-4 sm:p-6 flex flex-col sm:flex-row items-center justify-between">
+        <div className="text-2xl font-bold mb-4 sm:mb-0">Wealth wisely</div>
+        <div className="flex flex-wrap items-center gap-4 sm:gap-6">
           <Link href="#" className="text-gray-400 hover:text-white">Dashboard</Link>
           <Link href="#" className="text-gray-400 hover:text-white">Incomes</Link>
           <Link href="#" className="text-gray-400 hover:text-white">Expenses</Link>
@@ -80,8 +80,8 @@ export default function Home() {
         </div>
       </header>
 
-      <main className="p-6">
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+      <main className="p-4 sm:p-6">
+        <div className="grid gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-4">
           <div className="bg-gray-800 rounded-lg p-4 shadow-lg">
             <h2 className="text-lg">Total Balance</h2>
             <p className="text-3xl font-bold text-green-400">
@@ -106,9 +106,9 @@ export default function Home() {
           </div>
         </div>
 
-        <section className="bg-gray-800 rounded-lg p-6 shadow-lg mt-6">
+        <section className="bg-gray-800 rounded-lg p-4 sm:p-6 shadow-lg mt-4 sm:mt-6">
           <h3 className="text-xl font-semibold mb-4">Add Transaction</h3>
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <input
               type="number"
               value={amount}
@@ -139,14 +139,14 @@ export default function Home() {
             </select>
             <button
               onClick={addTransaction}
-              className="bg-blue-500 hover:bg-blue-400 text-white py-2 rounded mt-2"
+              className="bg-blue-500 hover:bg-blue-400 text-white py-2 rounded mt-2 lg:mt-0"
             >
               Add Transaction
             </button>
           </div>
         </section>
 
-        <section className="bg-gray-800 rounded-lg p-6 shadow-lg mt-6">
+        <section className="bg-gray-800 rounded-lg p-4 sm:p-6 shadow-lg mt-4 sm:mt-6">
           <h3 className="text-xl font-semibold mb-4">Recent Transactions</h3>
           <div className="overflow-hidden rounded-lg shadow-md">
             <table className="min-w-full bg-gray-900">
@@ -199,8 +199,8 @@ export default function Home() {
         </section>
 
         {selectedTransaction && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-            <div className="bg-gray-800 p-6 rounded-lg shadow-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
+            <div className="bg-gray-800 p-6 rounded-lg shadow-lg max-w-full sm:max-w-2xl w-full max-h-[90vh] overflow-y-auto">
               <h3 className="text-2xl font-semibold mb-4">Transaction Details</h3>
               <p><strong>Date:</strong> {selectedTransaction.date}</p>
               <p><strong>Description:</strong> {selectedTransaction.description}</p>
@@ -216,7 +216,7 @@ export default function Home() {
           </div>
         )}
 
-        <div className="mt-8 text-right">
+        <div className="mt-8 text-center sm:text-right">
           <Link href="/reports">
             <button className="bg-gradient-to-r from-green-400 to-blue-500 text-white py-2 px-6 rounded-lg hover:from-green-300 hover:to-blue-400">
               View Reports
