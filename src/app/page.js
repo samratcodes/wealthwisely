@@ -1,7 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Cookies from 'js-cookie';
 
 export default function Home() {
   const [transactions, setTransactions] = useState([]);
@@ -11,20 +10,20 @@ export default function Home() {
   const [type, setType] = useState('income');
   const [selectedTransaction, setSelectedTransaction] = useState(null);
 
-  // Load transactions from cookies on mount
+  // Load transactions from localStorage on mount
   useEffect(() => {
-    const storedTransactions = Cookies.get('transactions');
+    const storedTransactions = localStorage.getItem('transactions');
     if (storedTransactions) {
       setTransactions(JSON.parse(storedTransactions));
     }
   }, []);
 
-  // Save transactions to cookies whenever they change
+  // Save transactions to localStorage whenever they change
   useEffect(() => {
     if (transactions.length > 0) {
-      Cookies.set('transactions', JSON.stringify(transactions));
+      localStorage.setItem('transactions', JSON.stringify(transactions));
     } else {
-      Cookies.remove('transactions'); // Remove cookies if there are no transactions
+      localStorage.removeItem('transactions'); // Remove from localStorage if there are no transactions
     }
   }, [transactions]);
 
@@ -51,7 +50,7 @@ export default function Home() {
   const removeTransaction = (id) => {
     const updatedTransactions = transactions.filter((transaction) => transaction.id !== id);
     setTransactions(updatedTransactions);
-    Cookies.set('transactions', JSON.stringify(updatedTransactions)); // Update the cookies after deletion
+    localStorage.setItem('transactions', JSON.stringify(updatedTransactions)); // Update localStorage after deletion
   };
 
   const totalIncome = transactions
@@ -71,7 +70,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white">
       <header className="p-4 sm:p-6 flex flex-col sm:flex-row items-center justify-between">
-        <div className="text-2xl font-bold mb-4 sm:mb-0">Wealth wisely</div>
+        <div className="text-2xl font-bold mb-4 sm:mb-0">Wealth Wisely</div>
         <div className="flex flex-wrap items-center gap-4 sm:gap-6">
           <Link href="#" className="text-gray-400 hover:text-white">Dashboard</Link>
           <Link href="#" className="text-gray-400 hover:text-white">Incomes</Link>
